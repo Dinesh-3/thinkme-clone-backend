@@ -20,17 +20,17 @@ public class PageController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Page> getPage(@PathVariable String id){
+    public ResponseBody getPage(@PathVariable String id){
         return pageService.getPageById(id);
     }
 
     @PostMapping()
-    public Page createPage(@RequestBody Page page){
+    public ResponseBody createPage(@RequestBody Page page){
         return pageService.createPage(page);
     }
 
     @PutMapping("/{id}")
-    public Page updatePage(@PathVariable String id, @RequestBody Page page){
+    public ResponseBody updatePage(@PathVariable String id, @RequestBody Page page){
         return pageService.updatePage(id, page);
     }
 

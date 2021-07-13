@@ -6,6 +6,7 @@ import com.dinesh.thinkme_clone.utils.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @RestController
@@ -20,27 +21,27 @@ public class NoteController {
     }
 
     @GetMapping()
-    public ResponseBody getAllNotes(){
+    public HashMap getAllNotes(){
         return noteService.getAllNotes();
     }
 
     @GetMapping("/{id}")
-    public Optional<Note> getNote(@PathVariable long id){
+    public ResponseBody getNote(@PathVariable long id){
         return noteService.getNoteById(id);
     }
 
     @PostMapping()
-    public Note createNote(@RequestBody Note note){
+    public ResponseBody createNote(@RequestBody Note note){
         return noteService.createNote(note);
     }
 
     @PutMapping("/{id}")
-    public Note updateNote(@PathVariable long id, @RequestBody Note note){
+    public ResponseBody updateNote(@PathVariable long id, @RequestBody Note note){
         return noteService.updateNote(id, note);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseBody deleteNote(@PathVariable long id){
+    public HashMap deleteNote(@PathVariable long id){
         return noteService.deleteNote(id);
     }
 

@@ -4,6 +4,7 @@ import com.dinesh.thinkme_clone.model.Page;
 import com.dinesh.thinkme_clone.repository.PageRepository;
 import com.dinesh.thinkme_clone.utils.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,18 +20,24 @@ public class PageService {
         return response;
     }
 
-    public Optional<Page> getPageById(String id) {
-        return pageRepository.findById(id);
+    public ResponseBody getPageById(String id) {
+        var page = pageRepository.findById(id);
+        var response = getResponseBody("Page Contents Fetched Successfully", page);
+        return response;
     }
 
-    public Page createPage(Page page){
+    public ResponseBody createPage(Page page){
         var savedPage = pageRepository.save(page);
-        return savedPage;
+        var response = getResponseBody("Page Created Successfully", savedPage);
+
+        return response;
     }
 
-    public Page updatePage(String id, Page page){
+    public ResponseBody updatePage(String id, Page page){
 //        var isExist = noteRepository.existsById(id);
-        return pageRepository.save(page);
+        var updatedPage = pageRepository.save(page);
+        var response = getResponseBody("Page Created Successfully", updatedPage);
+        return response;
     }
 
     public ResponseBody deletePage(String id) {
