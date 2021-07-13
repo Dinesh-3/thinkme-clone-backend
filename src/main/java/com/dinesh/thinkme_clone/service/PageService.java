@@ -45,6 +45,11 @@ public class PageService {
         return getResponseBody("Note Deleted Successfully", null);
     }
 
+    public ResponseBody isPageExist(String id) {
+        var isExist = pageRepository.existsById(id);
+        return getResponseBody("Success", isExist);
+    }
+
     private ResponseBody getResponseBody(String message, Object data){
         return new ResponseBody(message, data);
     }

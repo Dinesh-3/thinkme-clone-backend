@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/page")
 public class PageController {
@@ -32,6 +33,11 @@ public class PageController {
     @PutMapping("/{id}")
     public ResponseBody updatePage(@PathVariable String id, @RequestBody Page page){
         return pageService.updatePage(id, page);
+    }
+
+    @PostMapping("/check/{id}")
+    public ResponseBody isPageExist(@PathVariable String id){
+        return pageService.isPageExist(id);
     }
 
     @DeleteMapping("/{id}")
