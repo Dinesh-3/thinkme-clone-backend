@@ -15,35 +15,35 @@ public class NoteService {
     @Autowired NoteRepository noteRepository;
 
     public HashMap getAllNotes(){
-        var notes = noteRepository.findAll();
-        var response = this.getResponseBody();
+        Iterable<Note> notes = noteRepository.findAll();
+        HashMap response = this.getResponseBody();
         response.put("message", "Notes Fetched Successfully");
         response.put("data", notes);
         return response;
     }
 
     public ResponseBody getNoteById(long id) {
-        var note = noteRepository.findById(id);
-        var response = getResponseBody("Note Fetched Successfully", note);
+        Optional<Note> note = noteRepository.findById(id);
+        ResponseBody response = getResponseBody("Note Fetched Successfully", note);
         return response;
     }
 
     public ResponseBody createNote(Note note){
-        var savedNote = noteRepository.save(note);
-        var response = getResponseBody("Note Created Successfully", savedNote);
+        Note savedNote = noteRepository.save(note);
+        ResponseBody response = getResponseBody("Note Created Successfully", savedNote);
         return response;
     }
 
     public ResponseBody updateNote(long id, Note note){
 //        var isExist = noteRepository.existsById(id);
-        var updatedNote = noteRepository.save(note);
-        var response = getResponseBody("Note Created Successfully", updatedNote);
+        Note updatedNote = noteRepository.save(note);
+        ResponseBody response = getResponseBody("Note Created Successfully", updatedNote);
         return response;
     }
 
     public HashMap deleteNote(long id) {
         noteRepository.deleteById(id);
-        var response = getResponseBody();
+        HashMap response = getResponseBody();
         response.put("message", "Note Deleted Successfully");
 
         return response;
@@ -55,7 +55,7 @@ public class NoteService {
 
     @Bean
     private HashMap getResponseBody() {
-        var hashMap = new HashMap<String, Object>();
+        HashMap hashMap = new HashMap<String, Object>();
         hashMap.put("status", true);
         hashMap.put("status_code", 200);
         return hashMap;

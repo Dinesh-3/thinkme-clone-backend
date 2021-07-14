@@ -15,28 +15,28 @@ public class PageService {
     PageRepository pageRepository;
 
     public ResponseBody getAllPages(){
-        var notes = pageRepository.findAll();
-        var response = this.getResponseBody("Pages Fetched", notes);
+        Iterable<Page> notes = pageRepository.findAll();
+        ResponseBody response = this.getResponseBody("Pages Fetched", notes);
         return response;
     }
 
     public ResponseBody getPageById(String id) {
-        var page = pageRepository.findById(id);
-        var response = getResponseBody("Page Contents Fetched Successfully", page);
+        Optional<Page> page = pageRepository.findById(id);
+        ResponseBody response = getResponseBody("Page Contents Fetched Successfully", page);
         return response;
     }
 
     public ResponseBody createPage(Page page){
-        var savedPage = pageRepository.save(page);
-        var response = getResponseBody("Page Created Successfully", savedPage);
+        Page savedPage = pageRepository.save(page);
+        ResponseBody response = getResponseBody("Page Created Successfully", savedPage);
 
         return response;
     }
 
     public ResponseBody updatePage(String id, Page page){
 //        var isExist = noteRepository.existsById(id);
-        var updatedPage = pageRepository.save(page);
-        var response = getResponseBody("Page Created Successfully", updatedPage);
+        Page updatedPage = pageRepository.save(page);
+        ResponseBody response = getResponseBody("Page Created Successfully", updatedPage);
         return response;
     }
 
@@ -46,7 +46,7 @@ public class PageService {
     }
 
     public ResponseBody isPageExist(String id) {
-        var isExist = pageRepository.existsById(id);
+        boolean isExist = pageRepository.existsById(id);
         return getResponseBody("Success", isExist);
     }
 
