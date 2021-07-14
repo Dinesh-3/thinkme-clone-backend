@@ -1,15 +1,15 @@
 version: '3.1'
 services:
   app:
-    container_name: thymeleaf-example
-    image: thymeleaf-example
+    container_name: thinkme_clone
+    image: thinkme_clone
     build: ./
     ports:
       - "8080:8080"
     depends_on:
       - postgresqldb
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqldb:5432/test
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqldb:5432/thinkme
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -27,4 +27,4 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=test
+      - POSTGRES_DB=thinkme

@@ -17,6 +17,8 @@ public class Note {
 
     private String content;
 
+    private String color;
+
     @CreationTimestamp
     private LocalDateTime created_at;
 
@@ -41,5 +43,9 @@ public class Note {
 
     public LocalDateTime getUpdated_at() {
         return updated_at;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
