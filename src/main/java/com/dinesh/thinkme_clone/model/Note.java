@@ -20,6 +20,7 @@ public class Note {
     private String color;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime created_at;
 
     @UpdateTimestamp
